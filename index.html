@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Practica Python y los tópicos de la semana 15, paso a paso y con feedback por caso.">
+  <title>Paso a paso · Semana 15</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./browser-runner.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="./" aria-label="Inicio"><span class="brand-icon">p.</span><span>paso a paso<small>LABORATORIO DE PYTHON</small></span></a>
+    <div class="course-tag">IIC2233 <span>SEMANA 15</span></div>
+    <h2>Tu ruta de práctica</h2>
+    <p class="side-intro">Una idea. Un ejercicio.<br>Un paso más.</p>
+    <nav id="modules" aria-label="Sets de ejercicios"></nav>
+    <div class="overall"><div><strong id="total-done">0 ejercicios</strong><span id="total-count"></span></div><progress id="overall-progress" value="0" max="1"></progress><p>Avanza a tu ritmo. Puedes volver a cualquier set.</p></div>
+    <button id="export" class="quiet full">↓ Descargar mi avance</button>
+    <button id="import-progress" class="quiet full">↑ Cargar mi avance</button><input id="import-file" type="file" accept=".json,application/json" hidden><p id="import-status" role="status"></p><p class="local-note">Python corre en tu navegador. Tu avance es solo tuyo en este navegador; no se sincroniza. Descarga un respaldo antes de borrar sus datos.</p>
+  </aside>
+  <main>
+    <header class="topbar"><span>PREPARACIÓN · TÓPICOS AVANZADOS</span><span class="save-status" id="save-status">● Guardado local</span></header>
+    <div id="loading" role="status">Preparando tu espacio de práctica…</div>
+    <section id="workspace" hidden>
+      <div class="module-heading"><div><div class="eyebrow" id="module-kicker"></div><h1 id="module-title"></h1><p id="module-subtitle"></p></div><span class="time-pill" id="module-time"></span></div>
+      <div class="section-tabs" role="tablist" aria-label="Contenido del set"><button role="tab" id="lesson-tab" aria-controls="lesson" aria-selected="true">01 <span>Entender la idea</span></button><button role="tab" id="practice-tab" aria-controls="practice" aria-selected="false">02 <span>Ponerla en práctica</span><span class="tab-count" id="set-count"></span></button></div>
+      <section id="lesson" role="tabpanel" aria-labelledby="lesson-tab"><div class="lesson-grid"><article id="lesson-text"></article><aside class="example-panel"><div class="panel-label">MÍRALO EN PYTHON</div><pre id="lesson-example"></pre><div class="takeaway"><span>QUÉDATE CON ESTO</span><p id="takeaway"></p></div></aside></div><div class="lesson-bottom"><p>No hace falta memorizarlo. Puedes volver aquí mientras resuelves.</p><button id="start-practice" class="primary">Vamos al primer ejercicio →</button></div></section>
+      <section id="practice" role="tabpanel" aria-labelledby="practice-tab" hidden>
+        <div class="exercise-strip" id="exercise-list" aria-label="Ejercicios del set"></div>
+        <div class="practice-grid">
+          <article class="problem-panel"><div class="exercise-meta"><span id="exercise-number"></span><span class="level" id="level"></span></div><h2 id="exercise-title"></h2><p id="problem"></p><div class="format-note">Lee con <code>input()</code> e imprime únicamente lo pedido. Cada caso empieza desde cero.</div><h3>Un ejemplo</h3><div class="sample-grid"><div><label>ENTRADA</label><pre id="sample-input"></pre></div><div><label>SALIDA ESPERADA</label><pre id="sample-output"></pre></div></div><div class="help-actions"><button id="hint" class="quiet">↳ Necesito una pista</button><button id="solution" class="text-button">Ver solución explicada</button></div><div id="hints" aria-live="polite"></div><details id="solution-box" hidden><summary>Solución de referencia · intenta reconstruirla después</summary><pre id="solution-code"></pre><p id="solution-why"></p></details></article>
+          <section class="coding-panel" aria-label="Editor y resultados"><div class="editor-heading"><span><span class="file-dot"></span> respuesta.py</span><button id="reset" class="text-button">Restablecer</button></div><label for="editor" class="sr-only">Tu código Python</label><div class="editor-wrap"><div id="line-numbers" aria-hidden="true">1</div><textarea id="editor" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-describedby="editor-tip"></textarea></div><div class="editor-footer"><span id="editor-tip">Tab: 4 espacios · Ctrl+Enter: ejecutar</span><button class="primary" id="run">▶ Ejecutar casos</button></div>
+          <section class="results-panel"><div class="results-heading"><h3>Casos de prueba</h3><span id="results-summary" role="status" aria-live="polite">Todavía sin ejecutar</span></div><div id="test-bar" class="test-bar" aria-label="Estado de cada caso"></div><div class="legend"><span><i class="pass"></i>Correcto</span><span><i class="fail"></i>Salida distinta</span><span><i class="error"></i>Error al ejecutar</span></div><div id="results"><p class="empty-state">Tu primera barra verde empieza con un intento.<br>Ejecuta tu código para ver qué pasa en cada caso.</p></div></section></section>
+        </div>
+        <div class="practice-bottom"><button id="previous" class="quiet">← Anterior</button><span id="encouragement">Si algo falla, tienes información para el siguiente intento.</span><button id="next" class="quiet">Siguiente ejercicio →</button></div>
+      </section>
+      <footer>Ejercicios originales de práctica, alineados con los temas de tus apuntes. No son una predicción de la actividad evaluada.</footer>
+    </section>
+  </main>
+</body>
+</html>
