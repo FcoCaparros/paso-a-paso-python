@@ -171,6 +171,7 @@ async function init() {
   } catch(error){$('loading').textContent=error.message+' Recarga la página y comprueba tu conexión.';return;}
 
   $('modules').addEventListener('click',event=>{const b=event.target.closest('[data-module]');if(b)selectModule(b.dataset.module);});
+  $('study-plan').addEventListener('click',event=>{const b=event.target.closest('[data-go-module]');if(b){selectModule(b.dataset.goModule);$('study-plan').open=false;$('module-title').scrollIntoView({block:'start',behavior:'smooth'});}});
   $('exercise-list').addEventListener('click',event=>{const b=event.target.closest('[data-exercise]');if(b)selectExercise(b.dataset.exercise);});
   $('lesson-tab').onclick=()=>showTab('lesson');
   $('practice-tab').onclick=()=>showTab('practice');

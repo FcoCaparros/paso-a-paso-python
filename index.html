@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Practica Python y los tópicos de la semana 15, paso a paso y con feedback por caso.">
-  <title>Paso a paso · Semana 15</title>
+  <meta name="description" content="Repasa programación avanzada por semanas: explicaciones, ejercicios progresivos y pruebas en Python.">
+  <title>Paso a paso · Programación avanzada</title>
   <link rel="stylesheet" href="./style.css">
   <script src="./browser-runner.js" defer></script>
   <script src="./app.js" defer></script>
@@ -12,7 +12,7 @@
 <body>
   <aside class="sidebar">
     <a class="brand" href="./" aria-label="Inicio"><span class="brand-icon">p.</span><span>paso a paso<small>LABORATORIO DE PYTHON</small></span></a>
-    <div class="course-tag">IIC2233 <span>SEMANA 15</span></div>
+    <div class="course-tag">IIC2233 <span>RUTA AL EXAMEN</span></div>
     <h2>Tu ruta de práctica</h2>
     <p class="side-intro">Una idea. Un ejercicio.<br>Un paso más.</p>
     <nav id="modules" aria-label="Sets de ejercicios"></nav>
@@ -21,7 +21,27 @@
     <button id="import-progress" class="quiet full">↑ Cargar mi avance</button><input id="import-file" type="file" accept=".json,application/json" hidden><p id="import-status" role="status"></p><p class="local-note">Python corre en tu navegador. Tu avance es solo tuyo en este navegador; no se sincroniza. Descarga un respaldo antes de borrar sus datos.</p>
   </aside>
   <main>
-    <header class="topbar"><span>PREPARACIÓN · TÓPICOS AVANZADOS</span><span class="save-status" id="save-status">● Guardado local</span></header>
+    <header class="topbar"><span>PREPARACIÓN · PROGRAMACIÓN AVANZADA</span><span class="save-status" id="save-status">● Guardado local</span></header>
+    <details class="study-plan" id="study-plan">
+      <summary>Tu plan hasta el examen · 10 días, paso a paso</summary>
+      <p>Ruta sugerida del 16 al 25 de noviembre, antes del examen del jueves 26. Los bloques son flexibles: si falta una base, repítela antes de avanzar. Este plan no reemplaza el temario que anuncie tu curso.</p>
+      <p><strong>En cada sesión:</strong> 10 min recordar sin mirar → 20 min leer y trazar el ejemplo → 45 min ejercicios → pausa → 30–45 min reconstruir los que costaron. Si tienes menos tiempo, haz el primer ejercicio de cada tema y anota lo pendiente. Si tienes más, completa el set y repítelo sin pistas.</p>
+      <div class="plan-grid">
+        <button data-go-module="bases"><b>Día 1 · Lun 16</b><span>Bases + S01: funciones, objetos y archivos</span></button>
+        <button data-go-module="s02"><b>Día 2 · Mar 17</b><span>S02–03: módulos y estructuras</span></button>
+        <button data-go-module="s04"><b>Día 3 · Mié 18</b><span>S04: herencia, property, MRO y contratos</span></button>
+        <button data-go-module="s05"><b>Día 4 · Jue 19</b><span>S05: errores, iteradores y nodos</span></button>
+        <button data-go-module="s08"><b>Día 5 · Vie 20</b><span>S08: funcional y consultas</span></button>
+        <button data-go-module="s09"><b>Día 6 · Sáb 21</b><span>S09: concurrencia + laboratorio de hilos</span></button>
+        <button data-go-module="s10"><b>Día 7 · Dom 22</b><span>S10–11: JSON, HTTP, bytes y red</span></button>
+        <button data-go-module="s13"><b>Día 8 · Lun 23</b><span>S13–14: señales, estados y GUI</span></button>
+        <button data-go-module="regex"><b>Día 9 · Mar 24</b><span>S15: regex, grafos, NumPy y pandas</span></button>
+        <button data-go-module="repaso"><b>Día 10 · Mié 25</b><span>Integración sin pistas + repasar tus errores</span></button>
+      </div>
+      <p><strong>Cómo usar las ayudas:</strong> intenta 10 minutos; abre una pista y prueba otra vez. Si miras la solución, ciérrala y reescríbela después. Explica en voz alta qué recibe cada función y qué devuelve. La barra compara resultados: también revisa si respetaste el diseño pedido.</p>
+      <p>Las semanas 6 y 12 son evaluaciones; 7 es receso; 16 es cierre y 17 examen. Las semanas con materia nueva aparecen en el menú. Concurrencia, sockets y PyQt tienen prácticas de lógica aquí y laboratorios reales para tu computador.</p>
+      <p><a href="./PLAN-DE-ESTUDIO.md" download>↓ Descargar plan y guía de laboratorios</a> · <a href="./laboratorios.py" download>↓ Descargar laboratorios Python</a></p>
+    </details>
     <div id="loading" role="status">Preparando tu espacio de práctica…</div>
     <section id="workspace" hidden>
       <div class="module-heading"><div><div class="eyebrow" id="module-kicker"></div><h1 id="module-title"></h1><p id="module-subtitle"></p></div><span class="time-pill" id="module-time"></span></div>
@@ -36,7 +56,7 @@
         </div>
         <div class="practice-bottom"><button id="previous" class="quiet">← Anterior</button><span id="encouragement">Si algo falla, tienes información para el siguiente intento.</span><button id="next" class="quiet">Siguiente ejercicio →</button></div>
       </section>
-      <footer>Ejercicios originales de práctica, alineados con los temas de tus apuntes. No son una predicción de la actividad evaluada.</footer>
+      <footer>Ejercicios originales de práctica, alineados con los temas de tus apuntes. No son evaluaciones oficiales ni una predicción del examen. Los tests comprueban salidas; explica también tu procedimiento.</footer>
     </section>
   </main>
 </body>
