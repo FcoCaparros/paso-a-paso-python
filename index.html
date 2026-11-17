@@ -22,6 +22,23 @@
   </aside>
   <main>
     <header class="topbar"><span>PREPARACIÓN · PROGRAMACIÓN AVANZADA</span><span class="save-status" id="save-status">● Guardado local</span></header>
+    <details class="study-plan review-update" id="review-update">
+      <summary>Nuevo · Repaso AY14 y preguntas tipo prueba</summary>
+      <p>Refuerzos dentro de cada materia, variantes de código y preguntas para justificar o predecir salidas. Tus respuestas escritas también se guardan y se incluyen al descargar tu avance. Las pautas son de autoevaluación, sin nota automática.</p>
+      <div class="plan-grid">
+        <button data-review-module="s01"><b>S01 · Objetos</b><span>Valores por defecto mutables</span></button>
+        <button data-review-module="s02"><b>S02 · Entorno</b><span>Rutas, staging y commits</span></button>
+        <button data-review-module="s03"><b>S03 · Estructuras</b><span>Eficiencia, índices y trazas con *args</span></button>
+        <button data-review-module="s04"><b>S04 · POO</b><span>Decoradores, classmethod y UML</span></button>
+        <button data-review-module="s05"><b>S05 · Errores e iteración</b><span>if o try, finally, iteradores y enlaces</span></button>
+        <button data-review-module="s08"><b>S08 · Funcional</b><span>send, estados y una sola pasada</span></button>
+        <button data-review-module="s09"><b>S09 · Concurrencia</b><span>Event, tiempos y alcance del Lock</span></button>
+        <button data-review-module="s10"><b>S10 · APIs</b><span>Timeout y resultado incierto</span></button>
+        <button data-review-module="s11"><b>S11 · Redes</b><span>Encabezados y diseño del sistema</span></button>
+        <button data-review-module="recorridos"><b>Opcional · Backtracking</b><span>Probar, deshacer y justificar</span></button>
+      </div>
+      <p>AY14 repasa la primera parte de la materia; no la tomes como el temario completo del examen. Se incorporan también habilidades de la I2. Los ejemplos son originales y los documentos del curso no se publican aquí.</p>
+    </details>
     <details class="study-plan" id="study-plan">
       <summary>Tu plan hasta el examen · 10 días, paso a paso</summary>
       <p>Ruta sugerida del 16 al 25 de noviembre, antes del examen del jueves 26. Los bloques son flexibles: si falta una base, repítela antes de avanzar. Este plan no reemplaza el temario que anuncie tu curso.</p>
@@ -46,7 +63,7 @@
     <section id="workspace" hidden>
       <div class="module-heading"><div><div class="eyebrow" id="module-kicker"></div><h1 id="module-title"></h1><p id="module-subtitle"></p></div><span class="time-pill" id="module-time"></span></div>
       <div class="section-tabs" role="tablist" aria-label="Contenido del set"><button role="tab" id="lesson-tab" aria-controls="lesson" aria-selected="true">01 <span>Entender la idea</span></button><button role="tab" id="practice-tab" aria-controls="practice" aria-selected="false">02 <span>Ponerla en práctica</span><span class="tab-count" id="set-count"></span></button></div>
-      <section id="lesson" role="tabpanel" aria-labelledby="lesson-tab"><div class="lesson-grid"><article id="lesson-text"></article><aside class="example-panel"><div class="panel-label">MÍRALO EN PYTHON</div><pre id="lesson-example"></pre><div class="takeaway"><span>QUÉDATE CON ESTO</span><p id="takeaway"></p></div></aside></div><div class="lesson-bottom"><p>No hace falta memorizarlo. Puedes volver aquí mientras resuelves.</p><button id="start-practice" class="primary">Vamos al primer ejercicio →</button></div></section>
+      <section id="lesson" role="tabpanel" aria-labelledby="lesson-tab"><div class="lesson-grid"><article id="lesson-text"></article><aside class="example-panel"><div class="panel-label">MÍRALO EN PYTHON</div><pre id="lesson-example"></pre><div class="takeaway"><span>QUÉDATE CON ESTO</span><p id="takeaway"></p></div></aside></div><section id="review-section" class="review-section" hidden aria-label="Refuerzo de ayudantía y autoevaluación"></section><div class="lesson-bottom"><p>No hace falta memorizarlo. Puedes volver aquí mientras resuelves.</p><button id="start-practice" class="primary">Vamos al primer ejercicio →</button></div></section>
       <section id="practice" role="tabpanel" aria-labelledby="practice-tab" hidden>
         <div class="exercise-strip" id="exercise-list" aria-label="Ejercicios del set"></div>
         <div class="practice-grid">

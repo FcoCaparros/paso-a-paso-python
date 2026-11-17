@@ -1,7 +1,7 @@
 'use strict';
 const $ = id => document.getElementById(id);
 const KEY = 'paso-a-paso-semana15-v1';
-let course, state = {drafts:{}, hints:{}, passed:{}, results:{}, selected:'bases', exercise:null};
+let course, state = {drafts:{}, hints:{}, passed:{}, results:{}, notes:{}, selected:'bases', exercise:null};
 let moduleId, exerciseId, busy = false, storageOK = true;
 const esc = text => String(text).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const exercises = () => course.exercises.filter(e => e.module === moduleId);
@@ -50,11 +50,20 @@ function selectModule(id, first=false) {
   $('lesson-text').innerHTML = m.lesson.map(([title,text],i) => `<section class="lesson-item"><span>${i+1}</span><div><h2>${esc(title)}</h2><p>${esc(text)}</p></div></section>`).join('');
   $('lesson-example').textContent = m.example;
   $('takeaway').textContent = m.takeaway;
+  renderReview(m);
   const savedExercise = first && exercises().some(e=>e.id===state.exercise) ? state.exercise : exercises()[0].id;
   const savedTab = first && state.tab==='practice' ? 'practice' : 'lesson';
   selectExercise(savedExercise, false);
   showTab(savedTab);
   renderNav();
+}
+
+function renderReview(m) {
+  const extra = exercises().filter(e=>e.origin);
+  const lessons = (m.reinforcement||[]).map(([title,text])=>`<section><h3>${esc(title)}</h3><p>${esc(text)}</p></section>`).join('');
+  const questions = (m.reviews||[]).map(q=>`<article class="review-card"><h3>${esc(q.title)}</h3><p>${esc(q.prompt)}</p>${q.code?`<pre>${esc(q.code)}</pre>`:''}<label for="note-${esc(q.id)}">Tu razonamiento · se guarda en este navegador</label><textarea id="note-${esc(q.id)}" data-note="${esc(q.id)}" maxlength="12000" placeholder="Escribe tu respuesta antes de abrir la pauta…">${esc(state.notes[q.id]||'')}</textarea><details><summary>Ver pauta y criterios para revisar mi respuesta</summary><p class="review-answer">${esc(q.answer)}</p><ul>${q.checks.map(c=>`<li>${esc(c)}</li>`).join('')}</ul><p class="review-warning">Autoevaluación: esta respuesta no recibe una nota automática ni suma ejercicios verdes. Comprueba tu razonamiento con los criterios.</p></details></article>`).join('');
+  $('review-section').hidden = !lessons && !questions && !extra.length;
+  $('review-section').innerHTML = `<div class="review-heading"><span class="eyebrow">REFUERZO · AY14 Y PRÁCTICA DE PRUEBAS</span><h2>Explicar, trazar y después programar</h2><p>Material original para practicar las habilidades del repaso. Empieza por las preguntas escritas y luego prueba las variantes de código.</p></div><div class="reinforcement">${lessons}</div>${extra.length?`<div class="review-exercises"><h3>Nuevos ejercicios de código de este tema</h3>${extra.map(e=>`<button class="quiet" data-review-exercise="${esc(e.id)}">${esc(e.title)} →</button>`).join('')}</div>`:''}<div class="review-questions">${questions}</div>`;
 }
 
 function renderChips() {
@@ -164,13 +173,16 @@ async function init() {
     try {
       const saved=JSON.parse(localStorage.getItem(KEY)||'null');
       if(saved && typeof saved==='object') for(const key of Object.keys(state).concat('tab')) if(saved[key]!==undefined) state[key]=saved[key];
-      for(const key of ['drafts','hints','passed','results']) if(!state[key]||typeof state[key]!=='object') state[key]={};
+      for(const key of ['drafts','hints','passed','results','notes']) if(!state[key]||typeof state[key]!=='object'||Array.isArray(state[key])) state[key]={};
     } catch {storageOK=false;}
     selectModule(course.modules.some(m=>m.id===state.selected)?state.selected:'bases', true);
     $('loading').hidden=true; $('workspace').hidden=false;
   } catch(error){$('loading').textContent=error.message+' Recarga la página y comprueba tu conexión.';return;}
 
   $('modules').addEventListener('click',event=>{const b=event.target.closest('[data-module]');if(b)selectModule(b.dataset.module);});
+  $('review-section').addEventListener('input',event=>{const field=event.target.closest('[data-note]');if(field){state.notes[field.dataset.note]=field.value;save();}});
+  $('review-section').addEventListener('click',event=>{const b=event.target.closest('[data-review-exercise]');if(b){selectExercise(b.dataset.reviewExercise);$('exercise-title').scrollIntoView({block:'start',behavior:'smooth'});}});
+  $('review-update').addEventListener('click',event=>{const b=event.target.closest('[data-review-module]');if(b){selectModule(b.dataset.reviewModule);$('review-update').open=false;$('review-section').scrollIntoView({block:'start',behavior:'smooth'});}});
   $('study-plan').addEventListener('click',event=>{const b=event.target.closest('[data-go-module]');if(b){selectModule(b.dataset.goModule);$('study-plan').open=false;$('module-title').scrollIntoView({block:'start',behavior:'smooth'});}});
   $('exercise-list').addEventListener('click',event=>{const b=event.target.closest('[data-exercise]');if(b)selectExercise(b.dataset.exercise);});
   $('lesson-tab').onclick=()=>showTab('lesson');
@@ -218,18 +230,21 @@ async function init() {
       const backup=JSON.parse(await file.text());
       if(backup.course!=='semana15'||!backup.state||typeof backup.state!=='object')throw new Error('No es un respaldo de esta práctica.');
       if(busy)throw new Error('Espera a que termine la ejecución antes de importar.');
-      const incoming=backup.state, restored={drafts:{},hints:{},passed:{},results:{},selected:'bases',exercise:null};
+      const incoming=backup.state, restored={drafts:{},hints:{},passed:{},results:{},notes:{},selected:'bases',exercise:null};
       for(const exercise of course.exercises){
         const id=exercise.id;
         if(typeof incoming.drafts?.[id]==='string'&&incoming.drafts[id].length<=50_000)restored.drafts[id]=incoming.drafts[id];
         if(Number.isInteger(incoming.hints?.[id]))restored.hints[id]=Math.max(0,Math.min(2,incoming.hints[id]));
         if(typeof incoming.passed?.[id]==='string'&&incoming.passed[id]===restored.drafts[id])restored.passed[id]=incoming.passed[id];
       }
+      for(const module of course.modules)for(const question of module.reviews||[]){
+        if(typeof incoming.notes?.[question.id]==='string')restored.notes[question.id]=incoming.notes[question.id].slice(0,12000);
+      }
       if(course.modules.some(m=>m.id===incoming.selected))restored.selected=incoming.selected;
       if(course.exercises.some(e=>e.id===incoming.exercise))restored.exercise=incoming.exercise;
       if(!confirm('¿Cargar este respaldo? Reemplazará el avance guardado en este navegador. Descarga tu avance actual antes si quieres conservarlo.'))return;
       state=restored; selectModule(state.selected,true); save();
-      $('import-status').textContent='Código y progreso cargados. Ejecuta los casos para ver sus resultados actualizados.';
+      $('import-status').textContent='Código, respuestas escritas y progreso cargados. Ejecuta los casos para ver sus resultados actualizados.';
     } catch(error){$('import-status').textContent=error.message;}
     finally{$('import-file').value='';}
   };

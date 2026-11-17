@@ -112,3 +112,21 @@ Los identificadores de los 26 ejercicios originales se conservan. Los respaldos
 anteriores de semana 15 siguen siendo compatibles. Los nuevos ejercicios tienen
 sus propios identificadores. La descarga guarda tu código actual, no un historial
 de todas las versiones de cada intento.
+
+## Refuerzo de ayudantía y preguntas tipo prueba (17 de noviembre)
+
+Abre en la web **Nuevo · Repaso AY14 y preguntas tipo prueba**. Desde ahí puedes
+ir al refuerzo de cada materia: 19 ejercicios de código nuevos y 13 preguntas
+escritas con pauta. Ya hay 97 ejercicios de código en total.
+
+Prioriza estructuras y eficiencia (S03), excepciones y trazas (S05), generadores
+con send y restricciones funcionales (S08). Completa también rutas/Git,
+decoradores/UML y concurrencia según tus dificultades. Backtracking es opcional
+en la selección revisada. La AY14 es repaso de la primera parte, no un anuncio
+del temario completo. También se incorporan habilidades de la I2 recién añadida.
+
+Para las preguntas escritas: escribe sin mirar, abre la pauta, compara criterios
+y corrige tu respuesta explicando el error. Se guardan en el navegador y en tu
+respaldo, pero no se califican automáticamente ni suman a la barra verde. En
+los ejercicios de código, comprueba también las restricciones del enunciado:
+la coincidencia de salida no demuestra que usaste el diseño solicitado.
